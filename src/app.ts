@@ -1,19 +1,19 @@
-import axios from "axios";
-import { Loader } from "@googlemaps/js-api-loader";
+import axios from 'axios';
+import { Loader } from '@googlemaps/js-api-loader';
 
-const form = document.querySelector("form")!;
-const addressInput = document.getElementById("address")! as HTMLInputElement;
+const form = document.querySelector('form')!;
+const addressInput = document.getElementById('address')! as HTMLInputElement;
 
 let GOOGLE_API_KEY = process.env.GOOGLE_API_KEY as string;
 
 type GoogleGeocodingResponse = {
   results: { geometry: { location: { lat: number; lng: number } } }[];
-  status: "OK" | "ZERO_RESULTS";
+  status: 'OK' | 'ZERO_RESULTS';
 };
 
 const loader = new Loader({
   apiKey: GOOGLE_API_KEY,
-  version: "weekly",
+  version: 'weekly',
 });
 
 function searchAddressHandler(event: Event) {
@@ -27,15 +27,15 @@ function searchAddressHandler(event: Event) {
       )}&key=${GOOGLE_API_KEY}`
     )
     .then((response) => {
-      if (response.data.status !== "OK") {
-        throw new Error("Could not fetch location!");
+      if (response.data.status !== 'OK') {
+        throw new Error('Could not fetch location!');
       }
       const coordinates = response.data.results[0].geometry.location;
       console.log(response);
 
       loader.load().then(() => {
         const map = new google.maps.Map(
-          document.getElementById("map") as HTMLElement,
+          document.getElementById('map') as HTMLElement,
           {
             center: coordinates,
             zoom: 8,
@@ -49,8 +49,9 @@ function searchAddressHandler(event: Event) {
       });
     })
     .catch((err) => {
+      alert(err.message);
       console.log(err);
     });
 }
 
-form.addEventListener("submit", searchAddressHandler);
+form.addEventListener('submit', searchAddressHandler);
