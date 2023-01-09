@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server --config webpack.config.js"
   },
   "keywords": [
     "typescript",
@@ -27,6 +27,7 @@
   "dependencies": {
     "@googlemaps/js-api-loader": "^1.15.1",
     "axios": "^1.2.2",
-    "dotenv": "^16.0.3"
+    "dotenv": "^16.0.3",
+    "html-webpack-plugin": "^5.5.0"
   }
 }

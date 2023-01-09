@@ -1,5 +1,6 @@
 const path = require('path');
 const Dotenv = require('dotenv-webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -9,6 +10,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     publicPath: 'dist',
   },
+  devtool: 'inline-source-map',
   module: {
     rules: [
       {
@@ -21,5 +23,5 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.js'],
   },
-  plugins: [new Dotenv()],
+  plugins: [new Dotenv(), new HtmlWebpackPlugin()],
 };
